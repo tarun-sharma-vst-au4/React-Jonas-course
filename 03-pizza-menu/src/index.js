@@ -66,10 +66,29 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+
+  const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzaData.map((pizza, index) => (
+            <Pizza
+              key={index}
+              name={pizza.name}
+              ingredients={pizza.ingredients}
+              photoName={pizza.photoName}
+              price={pizza.price}
+            />
+          ))}
+        </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later</p>
+      )}
+
+      {/* <Pizza
         name="Pizza Prosciutto"
         ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
         photoName="pizzas/prosciutto.jpg"
@@ -80,7 +99,7 @@ function Menu() {
         ingredients="Bread with italian olive oil and rosemary"
         photoName="pizzas/focaccia.jpg"
         price={6}
-      />
+      /> */}
     </main>
   );
 }
@@ -91,35 +110,27 @@ function Footer() {
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
 
-  // if (hour >= openHour && hour <= closeHour) {
-  //   alert("We're currently open!");
-  // } else {
-  //   alert("Sorry we're closed");
-  // }
-
-  // return React.createElement(
-  //   "footer",
-  //   null,
-  //   `${new Date().toLocaleTimeString()}. We're currently open!`
-  // );
-
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. We're currently open!
+      {isOpen ? (
+        <p>We're open until {closeHour}:00. Come visit us or other online.</p>
+      ) : (
+        <p>We're happy to welcome you between 20:00 and 22:00</p>
+      )}
     </footer>
   );
 }
 
 function Pizza(props) {
   return (
-    <div className="pizza">
+    <li className="pizza">
       <img src={props?.photoName} alt={props?.name} />
       <div>
         <h3>{props?.name}</h3>
         <p>{props?.ingredients}</p>
         <span>{props?.price + 3}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
