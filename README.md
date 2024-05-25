@@ -1,4 +1,5 @@
 # React-Jonas-course
-This is the repo for all the code related to Jonas course
 
-Link for the Pizza-menu section - "https://pizza-menu.thecodesamurai.com/"
+this is a repo for the react course developed by JONAS
+
+Section 10 - for the tutorial we created the quiz app to understate the useReducer hook
