@@ -2,8 +2,11 @@ import CityItem from "./CityItem";
 import styles from "./CityList.module.css";
 import Spinner from "./Spinner";
 import Message from "./Message";
+import { useCities } from "../context/CitiesContext";
 
-const CityList = ({ cities, isLoading }) => {
+const CityList = () => {
+  let { cities, isLoading } = useCities();
+
   //console.log("Cities is : ", cities);
   if (isLoading) {
     return <Spinner />;
